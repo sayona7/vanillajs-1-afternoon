@@ -2,39 +2,67 @@
 Vanilla Project
 Author: Veronica Bakanowicz */
 
+const arrayBoard = ["", "", "", "", "", "", "", "", ""];
 
-/* Step 4 */
-const array = [];
-const one = document.getElementById("0");
-const two = document.getElementById("1");
-const three = document.getElementById("2");
-const four = document.getElementById("3");
-const five = document.getElementById("4");
-const six = document.getElementById("5");
-const seven = document.getElementById("6");
-const eight = document.getElementById("7");
-const nine = document.getElementById("8");
+function array() {
+    for (i = 0; i < 9; i++) {
+        if (arrayBoard[i] === "X" || arrayBoard[i] === "O") {
+            console.log("element can't be replaced in array again");
+        } else {
+            arrayBoard.splice(i, 1, document.getElementById(i).innerText);
+        }
+    }
+    console.log(arrayBoard);
+}
 
-
-
-/* Step 2 & 3 */
-/* Function Play */
 
 function play(id) {
     const player = document.getElementById("player");
     const clickedBox = document.getElementById(id);
 
-    if (player.innerText === "X") {
-        player.innerText = "O";
-        clickedBox.innerText = "X";
-        array[id] = "X";
+    if (clickedBox.innerText === "") {
+        if (player.innerText === "X") {
+            player.innerText = "O";
+            clickedBox.innerText = "X";
+        } else {
+            player.innerText = "X";
+            clickedBox.innerText = "O";
+        }
     } else {
-        player.innerText = "X";
-        clickedBox.innerText = "O"
-        array[id] = "0";
+        console.log("can't change declared square");
     }
-
-    console.log(array);
     
 }
 
+const winning = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+]
+
+function determineWinner(arr) {
+
+
+}
+
+
+
+// Alert winner 
+
+// if (winner = true) ? alert("`The winner is player ${}") : alert("Cat's game, there is no winner");
+
+
+function clear() {
+    for (let i = 0; i <= 8; i++) {
+    document.getElementById(i).innerText = "";
+    arrayBoard[i] = "";
+    }
+
+}
+
+document.getElementById("reset-btn").addEventListener("click", clear);
