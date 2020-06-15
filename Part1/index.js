@@ -22,7 +22,7 @@ const winning = [
 function array() {
     for (i = 0; i < 9; i++) {
         if (arrayBoard[i] === "X" || arrayBoard[i] === "O") {
-            console.log("element can't be replaced in array again");
+            console.log("element can't be replaced again");
         } else {
             arrayBoard.splice(i, 1, document.getElementById(i).innerText);
         }
@@ -32,14 +32,14 @@ function array() {
     winning.forEach((combo, index) => {
         if (arrayBoard[combo[0]] && arrayBoard[combo[0]] === arrayBoard[combo[1]] && arrayBoard[combo[0]] === arrayBoard[combo[2]]) {
             winner = arrayBoard[combo[0]];
-            console.log(winner);
         }
     });
 
     if (winner) {
-        console.log(winner);
+        alert(`${winner} is the winner!`);
+        clear();
     } else if (arrayBoard.includes("")) {
-        console.log(null);
+        // console.log(null);
     } else {
         alert("Cat's game, there is no winner.");
         clear();
@@ -62,13 +62,11 @@ function play(id) {
             player.innerText = "X";
             clickedBox.innerText = "O";
         }
-    } else {
-        console.log("can't change declared square");
     }
 }
 
 
-/* Resetting anf Event Listener */
+/* Resetting and Event Listener */
 
 function clear() {
     for (let i = 0; i <= 8; i++) {
